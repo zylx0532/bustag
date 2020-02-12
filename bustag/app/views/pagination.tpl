@@ -1,10 +1,10 @@
 % curr_page = page_info[2]
 % max_page = page_info[1]
 % total_items = page_info[0]
+% setdefault('like', '')
 <div class="row">
 	<div class="col-12 text-center">
 	<h6>
-	<span>共 {{total_items}}条</span>
 	% if curr_page != 1:
 	<a href="?page=1&like={{like}}"> 第一页</a>
 	% end
@@ -19,5 +19,19 @@
 	<a href="?page={{max_page}}&like={{like}}">最后页</a>
 	% end
 	</h6>
+	<div>
+	<form>
+		<span>共  {{max_page}}页,{{total_items}}条</span>
+	跳转
+	<select id="pagenav">
+% for i in range(1, max_page+1):
+% url = '?page={}&like={}'.format(i, like)
+% selected = "selected" if i == curr_page else ""
+	<option {{selected}} value="{{url}}">{{i}}</option>
+% end
+	</select>
+	页
+	</form>
+	</div>
 	</div>
 </div>

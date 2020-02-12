@@ -1,22 +1,76 @@
 # 基于机器学习的老司机车牌自动推荐系统
+<img src="./bustag/app/static/images/logo.png" width="300">
 
-**Bustag** 是一个基于 python 异步爬虫框架开发[aspider](https://github.com/gxtrobot/aspider)的自动车牌推荐系统, 系统原理为定时爬取最新车牌信息, 然后可以对车牌进行打标(标示是否喜欢), 打标车牌到一定数量可以进行训练并生成模型, 以后就可以基于此模型自动对下载的车牌进行预测是否喜欢, 可以过滤掉大量不喜欢的车牌, 节约时间
+**Bustag** 是一个基于我开发的 python 异步爬虫框架开发[aspider](https://github.com/gxtrobot/aspider)的自动车牌推荐系统, 系统原理为定时爬取最新车牌信息, 然后可以对车牌进行打标(标示是否喜欢), 打标车牌到一定数量可以进行训练并生成模型, 以后就可以基于此模型自动对下载的车牌进行预测是否喜欢, 可以过滤掉大量不喜欢的车牌, 节约时间
+
+### Python in Action 学习视频发布
+[https://github.com/gxtrobot/pyinaction](https://github.com/gxtrobot/pyinaction)
+
+为提高解决问题效率 ,建了个qq群
+
+**QQ群: 941894005**
+
+注意, 该群仅讨论**python学习, 爬虫开发, aspider 框架学习开发, Bustag系统bug, 运行问题**等, 请勿讨论无关主题
+
+**免责声明:
+本软件仅用于技术学习使用，禁止用于商业用途，使用本软件所造成的的后果由使用者承担！
+如果你觉得这个软件不错, 可以请我喝杯冰阔落 ^_^.**
+
+<p align="center">
+<img src="./bustag/app/static/images/alipay.jpg" width="200">
+<img src="./bustag/app/static/images/wechat_pay.jpg" width="200">
+</p>
+
+# 紧急提示
+
 
 # windows, mac 绿色版下载地址
   链接: https://pan.baidu.com/s/1pqarq7fOXjsbad0WN4Uaaw 提取码: budu
 
   压缩包密码: gxtrobot
 
+# docker 版本同步更新
+运行 ```docker pull gxtrobot/bustag-app:latest``` 后重新启动项目即可
+
+# 使用须知
+只需在data目录下创建[config.ini](https://raw.githubusercontent.com/gxtrobot/bustag/master/data/config.ini), 然后启动系统, 访问localhost:8000
+
+### 使用视频 
+
+链接: https://pan.baidu.com/s/1pqarq7fOXjsbad0WN4Uaaw 提取码: budu
+
+在视频目录下
+
+- 群晖docker安装bustag 视频发布(2019-10-16)
+- bustag最新使用视频发布(2019-10-15)  
+- linux/mac docker版本安装 
+- win10 docker版本安装
+
 ## 更新
-  ### 2019-9-6 0.1.1版发布
+
+### release 0.2.1(2019-10-12)
+- 修复几个bug
+- 增加系统启动错误信息打印, 方便排查
+
+该版本主要是为了更好发现错误, 如果能正常运行的可以不更新
+
+### release 0.2.0(2019-10-7)
+- 一些bug修复, 如数据解析不全等
+- 多处页面优化(封面图点击放大, 页面跳转等等)
+- 启动检查config.ini, 没有自动退出
+- 手动本地文件管理, 增加手动添加番号及本地路径功能
+- 增加今日更新, 推荐数量
+- 手动上传番号, 直接打标为喜欢
+- 添加logo
+- 增加打标数据库导入功能
+
+#### 注意事项
+- **v0.2.0 版本有数据库结构变化, 所以和老版本数据库不兼容, 建议新建一个目录运行新版, 如需要愿数据库打标数据, 可以通过数据页面, 导入数据库完成打标数据导入**
+
+### 2019-9-6 0.1.1版发布
   - 修复部分bug
-  - 增加windows(只在win10下测试过)), mac 绿色版, 解压直接使用, 只需在data目录下创建[config.ini](https://raw.githubusercontent.com/gxtrobot/bustag/master/data/config.ini), 然后启动系统, 访问localhost:8000
+  - 增加windows(只在win10下测试过)), mac 绿色版, 解压直接使用,
 
-
-
-新录了个视频, 演示了如何使用docker运行项目
-- (linux/mac) https://pan.baidu.com/s/13a_7pE-uK0Jt7w2anVJV9A  提取码: za4m
-- (win10) https://pan.baidu.com/s/1dtUFvMvrYlw5plctaky46w 提取码: yd2y
 
 ## 系统功能
 
@@ -25,6 +79,8 @@
 - 车牌打标功能
 - 模型训练, 基于当前所有打标数据训练模型
 - 有了模型后, 自动预测判断是否喜欢
+- 手动上传番号, 本地文件管理
+- 数据库打标数据导入
 - Docker 镜像一键运行, 省去新手配置项目的麻烦
 - 项目访问地址: localhost:8000
 
@@ -36,8 +92,17 @@
 - 打标页面
   ![](./docs/tagit.png)
 
-- 其他页面
-  ![](./docs/other.png)
+- 本地文件页面
+  ![](./docs/local.png)
+
+- 本地番号, 链接上传页面
+  ![](./docs/local_upload.png)
+
+- 模型页面
+  ![](./docs/model.png)
+
+- 数据页面
+  ![](./docs/data.png)
 
 ## 如何运行项目
 
@@ -66,11 +131,14 @@ gunicorn bustag.app.index:app --bind='0.0.0.0:8000'
 
   ```
   linux, mac
-    docker run --rm -d -v $(pwd)/data:/app/data -p 8000:8000 gxtrobot/bustag-app
+    docker run --rm -d -e TZ=Asia/Shanghai -e PYTHONUNBUFFERED=1 -v $(pwd)/data:/app/data -p 8000:8000 gxtrobot/bustag-app
 
     windows powershell
-    docker run --rm -d -v ${PWD}/data:/app/data -p 8000:8000 gxtrobot/bustag-app
+    docker run --rm -d -e TZ=Asia/Shanghai -e PYTHONUNBUFFERED=1 -v ${PWD}/data:/app/data -p 8000:8000 gxtrobot/bustag-app
 
+
+注: -e TZ=Asia/Shanghai , 指的是docker container的时区设置, 如果需要其他时区可自行设置, 如果不设置默认为UTC时区
+    -e PYTHONUNBUFFERED=1 , 指的是显示所有log输出, 如果不设置, 那只能看到debug 的错误log日志
   ```
 
 ## 如何使用项目
@@ -106,11 +174,7 @@ gunicorn bustag.app.index:app --bind='0.0.0.0:8000'
 ## 其他问题
 
 1. 改变自动下载的频率
-   系统默认为每 30 分钟下载一次, 如果需要自定义可以在 data 下建立一个[crontab.txt](./docker/crontab.txt)文件, 该文件是基于 linux crontab 执行, ,具体可以看[wiki](https://zh.wikipedia.org/zh-hans/Cron)
-
-```
-*/30 * * * * /app/docker/run_download.sh >> /var/log/bustag.log 2>&1
-```
+   修改config.ini的interval 参数即可, 单位是秒, 比如修改为一小时更新一次为 `interval=3600`
 
 2. 改变下载初始 url
    因为该 url 会经常改变, 所有系统的 config.ini -> download -> root_path 定义了初始 url, 可以根据需要改变

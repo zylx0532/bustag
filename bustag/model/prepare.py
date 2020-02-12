@@ -8,11 +8,11 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import train_test_split
-from bustag.spider.db import get_items, RATE_TYPE, ItemRate, Item
+from bustag.spider.db import get_items, RATE_TYPE, ItemRate, Item, get_tags_for_items
 from bustag.model.persist import dump_model, load_model
 from bustag.util import logger, get_data_path, MODEL_PATH
 
-BINARIZER_PATH = MODEL_PATH + ' label_binarizer.pkl'
+BINARIZER_PATH = MODEL_PATH + 'label_binarizer.pkl'
 
 
 def load_data():
@@ -28,13 +28,17 @@ def load_data():
 
 
 def as_dict(item):
+    tags_set = set()
+    for tags in item.tags_dict.values():
+        for tag in tags:
+            tags_set.add(tag)
     d = {
-        'id': item.id,
+        'id': item.fanhao,
         'title': item.title,
         'fanhao': item.fanhao,
         'url': item.url,
         'add_date': item.add_date,
-        'tags': item.tags,
+        'tags': tags_set,
         'cover_img_url': item.cover_img_url,
         'target': item.rate_value
     }
